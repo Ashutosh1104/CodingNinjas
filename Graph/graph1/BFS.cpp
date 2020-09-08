@@ -8,17 +8,18 @@ void print(int **arr, int n, int starting_vertex, bool *visited)
     q.push(starting_vertex);
     visited[starting_vertex] = true;
     while (!q.empty()) {
+
         cout << q.front() << " ";
         int current_element = q.front();
+        q.pop();
+
         for (int i = 1; i < n; i++) {
-            if (i == current_element) continue;
-            if (visited[i]) continue;
-            if (arr[current_element][i] == 1){
+            if (arr[current_element][i] == 1 && !visited[i] && i != current_element){
                 q.push(i);
                 visited[i] = true;
+                // visited is made true as we go through all the children in bfs at once unlike dfs where we only go through one
             }
         }
-        q.pop();
     }
 }
 void BFS( int **arr , bool* visited , int starting_index , int v){
